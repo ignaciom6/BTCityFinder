@@ -89,7 +89,6 @@
         self.userStartedSearching = NO;
     }
     
-    self.citySearchArray = [self orderArrayAlphabetically:self.citySearchArray];
     [self.tableView reloadData];
 
 }
