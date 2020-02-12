@@ -17,6 +17,7 @@
 		4FC31E1823F31CA5009A85FA /* BTCitiesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC31E1723F31CA5009A85FA /* BTCitiesListViewController.m */; };
 		4FC31E1B23F31E30009A85FA /* BTCityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC31E1A23F31E30009A85FA /* BTCityModel.m */; };
 		4FC31E1E23F31ECE009A85FA /* BTCityCoordinatesDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC31E1D23F31ECE009A85FA /* BTCityCoordinatesDataModel.m */; };
+		4FC31E2223F48B05009A85FA /* BTArraySearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC31E2123F48B05009A85FA /* BTArraySearcher.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,8 @@
 		4FC31E1A23F31E30009A85FA /* BTCityModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTCityModel.m; sourceTree = "<group>"; };
 		4FC31E1C23F31ECE009A85FA /* BTCityCoordinatesDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTCityCoordinatesDataModel.h; sourceTree = "<group>"; };
 		4FC31E1D23F31ECE009A85FA /* BTCityCoordinatesDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTCityCoordinatesDataModel.m; sourceTree = "<group>"; };
+		4FC31E2023F48B05009A85FA /* BTArraySearcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTArraySearcher.h; sourceTree = "<group>"; };
+		4FC31E2123F48B05009A85FA /* BTArraySearcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTArraySearcher.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +97,7 @@
 				4FC31E1323F31BCA009A85FA /* ViewControllers */,
 				4FC31E1423F31C0C009A85FA /* Managers */,
 				4FC31E1523F31C21009A85FA /* Services */,
+				4FC31E1F23F48AB8009A85FA /* Utils */,
 				4FC31DEB23F31AFD009A85FA /* AppDelegate.h */,
 				4FC31DEC23F31AFD009A85FA /* AppDelegate.m */,
 				4FC31DEE23F31AFD009A85FA /* SceneDelegate.h */,
@@ -148,6 +152,15 @@
 			children = (
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		4FC31E1F23F48AB8009A85FA /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				4FC31E2023F48B05009A85FA /* BTArraySearcher.h */,
+				4FC31E2123F48B05009A85FA /* BTArraySearcher.m */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,6 +268,7 @@
 				4FC31E1823F31CA5009A85FA /* BTCitiesListViewController.m in Sources */,
 				4FC31DFE23F31B01009A85FA /* main.m in Sources */,
 				4FC31E1E23F31ECE009A85FA /* BTCityCoordinatesDataModel.m in Sources */,
+				4FC31E2223F48B05009A85FA /* BTArraySearcher.m in Sources */,
 				4FC31DF023F31AFD009A85FA /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

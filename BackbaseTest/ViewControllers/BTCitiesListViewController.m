@@ -7,6 +7,7 @@
 //
 
 #import "BTCitiesListViewController.h"
+#import "BTArraySearcher.h"
 
 @interface BTCitiesListViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
@@ -38,7 +39,19 @@
                         @"Moscow",
                         @"Oklahoma",
                         @"Porto",
-                        @"Roma",nil];
+                        @"Roma",
+                        @"Rome",
+                        @"Bangkok",
+                        @"Ontario",
+                        @"Orlando",
+                        @"Ankara",
+                        @"Alabama",
+                        @"Ohio",
+                        @"Omaha",
+                        @"Munster",
+                        @"Rotterdam",
+                        @"Salzburg",
+                        @"Oncativo",nil];
     
     self.citiesArray = [self orderArrayAlphabetically:self.citiesArray];
     
@@ -72,19 +85,9 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    
     if (searchText.length != 0) {
         self.userStartedSearching = YES;
-        [self.citySearchArray removeAllObjects];
-
-        for (NSString* city in self.citiesArray)
-        {
-            NSRange nameRange = [city rangeOfString:searchText options:NSCaseInsensitiveSearch];
-            if(nameRange.length != 0 && nameRange.location == 0)
-            {
-                [self.citySearchArray addObject:city];
-            }
-        }
+        self.citySearchArray = [BTArraySearcher searchText:searchText inArray:self.citiesArray];
     } else {
         self.userStartedSearching = NO;
     }
