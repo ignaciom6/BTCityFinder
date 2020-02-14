@@ -8,6 +8,10 @@
 
 #import "BTCitiesListViewController.h"
 #import "BTArraySearcher.h"
+#import "BTCityListManager.h"
+#import "BTCityModel.h"
+
+static NSString *const kCellIdentifier = @"cityCell";
 
 @interface BTCitiesListViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
@@ -16,6 +20,8 @@
 @property (strong, nonatomic) NSArray *citiesArray;
 @property (strong, nonatomic) NSMutableArray *citySearchArray;
 @property (assign, nonatomic) BOOL userStartedSearching;
+@property (strong, nonatomic) UIActivityIndicatorView *spinner;
+@property (strong, nonatomic) BTCityListManager *cityListManager;
 
 @end
 
@@ -29,32 +35,74 @@
     self.searchBar.delegate = self;
     
     self.citySearchArray = [[NSMutableArray alloc] init];
+    self.cityListManager = [[BTCityListManager alloc] init];
+
+//    self.citiesArray = [[NSArray alloc] initWithObjects:@"Paris",
+//                        @"Stockholm",
+//                        @"Amsterdam",
+//                        @"Munich",
+//                        @"Madrid",
+//                        @"Oslo",
+//                        @"Moscow",
+//                        @"Oklahoma",
+//                        @"Porto",
+//                        @"Roma",
+//                        @"Rome",
+//                        @"Bangkok",
+//                        @"Ontario",
+//                        @"Orlando",
+//                        @"Ankara",
+//                        @"Alabama",
+//                        @"Ohio",
+//                        @"Omaha",
+//                        @"Munster",
+//                        @"Rotterdam",
+//                        @"Salzburg",
+//                        @"Oncativo",nil];
     
-    self.citiesArray = [[NSArray alloc] initWithObjects:@"Paris",
-                        @"Stockholm",
-                        @"Amsterdam",
-                        @"Munich",
-                        @"Madrid",
-                        @"Oslo",
-                        @"Moscow",
-                        @"Oklahoma",
-                        @"Porto",
-                        @"Roma",
-                        @"Rome",
-                        @"Bangkok",
-                        @"Ontario",
-                        @"Orlando",
-                        @"Ankara",
-                        @"Alabama",
-                        @"Ohio",
-                        @"Omaha",
-                        @"Munster",
-                        @"Rotterdam",
-                        @"Salzburg",
-                        @"Oncativo",nil];
+//    self.citiesArray = [self orderArrayAlphabetically:self.citiesArray];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self showLoading];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+        
+    __weak typeof(self) weakSelf = self;
     
-    self.citiesArray = [self orderArrayAlphabetically:self.citiesArray];
+    [self.cityListManager getCitiesArrayWithCompletion:^(NSArray * _Nonnull value, NSError * _Nonnull error) {
+        if (value) {
+            weakSelf.citiesArray = value;
+            weakSelf.citiesArray = [weakSelf orderArrayAlphabetically:weakSelf.citiesArray];
+            [weakSelf.tableView reloadData];
+            [weakSelf hideLoading];
+        } else {
+            //Report failure
+        }
+    }];
+}
+
+-(void)showLoading
+{
+    self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.spinner.center = self.view.center;
+    [self.view addSubview:self.spinner];
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        [self.spinner startAnimating];
+    });
     
+}
+
+-(void)hideLoading
+{
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        [self.spinner stopAnimating];
+    });
 }
 
 #pragma mark - UITableViewDelegate
@@ -70,13 +118,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cityCell"];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+    BTCityModel *city = [[BTCityModel alloc] init];
     
     if (self.userStartedSearching) {
-        cell.textLabel.text = [self.citySearchArray objectAtIndex:indexPath.row];
+        city = [self.citySearchArray objectAtIndex:indexPath.row];
     } else {
-        cell.textLabel.text = [self.citiesArray objectAtIndex:indexPath.row];
+        city = [self.citiesArray objectAtIndex:indexPath.row];
     }
+    cell.textLabel.text = city.composedName;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Latitude: %f, Longitude: %f", city.coordDataModel.latitude, city.coordDataModel.longitude];
+
     
     return cell;
 }
@@ -87,7 +139,11 @@
 {
     if (searchText.length != 0) {
         self.userStartedSearching = YES;
-        self.citySearchArray = [BTArraySearcher searchText:searchText inArray:self.citiesArray];
+//        self.citySearchArray = [BTArraySearcher searchText:searchText inArray:self.citiesArray];
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"composedName beginswith[c] %@", searchText];
+        self.citySearchArray = [[self.citiesArray filteredArrayUsingPredicate:predicate] mutableCopy];
+        
     } else {
         self.userStartedSearching = NO;
     }
@@ -98,7 +154,9 @@
 
 - (NSArray *)orderArrayAlphabetically:(NSArray *)array
 {
-    return [array sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    NSSortDescriptor * nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"composedName" ascending:YES selector:@selector(caseInsensitiveCompare:)];
+    
+    return [array sortedArrayUsingDescriptors:@[nameDescriptor]];
 }
 
 /*

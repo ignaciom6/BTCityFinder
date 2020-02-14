@@ -7,6 +7,7 @@
 //
 
 #import "BTArraySearcher.h"
+#import "BTCityModel.h"
 
 @implementation BTArraySearcher
 
@@ -14,7 +15,7 @@
 {
     __block NSUInteger binarySearchFirstIndex;
     __block NSUInteger binarySearchLastIndex;
-    __block BOOL characterFound;
+    __block BOOL characterFound = NO;
 
     //Binary Search
     NSRange searchRange = NSMakeRange(0, [array count]);
@@ -22,13 +23,13 @@
     [array indexOfObject:text
            inSortedRange:searchRange
                  options:NSBinarySearchingFirstEqual
-         usingComparator:^(id city, id prefix)
+         usingComparator:^(BTCityModel *city, id prefix)
     {
-        NSComparisonResult comparison = [city compare:prefix];
+        NSComparisonResult comparison = [city.name compare:prefix];
         NSComparisonResult result;
         characterFound = NO;
         
-        NSRange nameRange = [city rangeOfString:text options:NSCaseInsensitiveSearch];
+        NSRange nameRange = [city.name rangeOfString:text options:NSCaseInsensitiveSearch];
         if(nameRange.length != 0 && nameRange.location == 0)
         {
             binarySearchFirstIndex = [array indexOfObject:city];
@@ -43,6 +44,7 @@
             result = NSOrderedSame;
         }
         
+        
         return result;
         
     }];
@@ -50,13 +52,13 @@
     [array indexOfObject:text
            inSortedRange:searchRange
                  options:NSBinarySearchingLastEqual
-         usingComparator:^(id city, id prefix)
+         usingComparator:^(BTCityModel *city, id prefix)
     {
-        NSComparisonResult comparison = [city compare:prefix];
+        NSComparisonResult comparison = [city.name compare:prefix];
         NSComparisonResult result;
         characterFound = NO;
 
-        NSRange nameRange = [city rangeOfString:text options:NSCaseInsensitiveSearch];
+        NSRange nameRange = [city.name rangeOfString:text options:NSCaseInsensitiveSearch];
         if(nameRange.length != 0 && nameRange.location == 0)
         {
             binarySearchLastIndex = [array indexOfObject:city];

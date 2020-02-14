@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *country;
+@property (nonatomic, copy) NSString *composedName;
 @property (nonatomic, assign) double cityId;
 @property (nonatomic, strong) BTCityCoordinatesDataModel *coordDataModel;
 

@@ -8,8 +8,8 @@
 
 #import "BTCityCoordinatesDataModel.h"
 
-static NSString *const kLatKey = @"latitude";
-static NSString *const kLonKey = @"longitude";
+static NSString *const kLatKey = @"lat";
+static NSString *const kLonKey = @"lon";
 
 @implementation BTCityCoordinatesDataModel
 

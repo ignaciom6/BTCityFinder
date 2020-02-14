@@ -20,6 +20,7 @@ static NSString *const kCoordKey = @"coord";
     if (self = [super init]) {
         _name = [dictionary objectForKey:kNameKey];
         _country = [dictionary objectForKey:kCountryKey];
+        _composedName = [NSString stringWithFormat:@"%@, %@", _name, _country];
         _cityId = [[dictionary objectForKey:kIdKey] doubleValue];
         _coordDataModel = [[BTCityCoordinatesDataModel alloc] initWithDictionary:[dictionary objectForKey:kCoordKey]];
     }

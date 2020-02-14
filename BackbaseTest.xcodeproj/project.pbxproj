@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F93338C23F58879002AC559 /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F93338B23F58879002AC559 /* cities.json */; };
+		4F93338F23F606DE002AC559 /* BTCityListManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F93338E23F606DE002AC559 /* BTCityListManager.m */; };
+		4F93339223F634CA002AC559 /* BTCityListFromFileService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F93339123F634CA002AC559 /* BTCityListFromFileService.m */; };
 		4FC31DED23F31AFD009A85FA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC31DEC23F31AFD009A85FA /* AppDelegate.m */; };
 		4FC31DF023F31AFD009A85FA /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC31DEF23F31AFD009A85FA /* SceneDelegate.m */; };
 		4FC31DF623F31AFD009A85FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FC31DF423F31AFD009A85FA /* Main.storyboard */; };
@@ -31,6 +34,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F93338B23F58879002AC559 /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
+		4F93338D23F606DE002AC559 /* BTCityListManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTCityListManager.h; sourceTree = "<group>"; };
+		4F93338E23F606DE002AC559 /* BTCityListManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTCityListManager.m; sourceTree = "<group>"; };
+		4F93339023F634CA002AC559 /* BTCityListFromFileService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTCityListFromFileService.h; sourceTree = "<group>"; };
+		4F93339123F634CA002AC559 /* BTCityListFromFileService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTCityListFromFileService.m; sourceTree = "<group>"; };
 		4FC31DE823F31AFD009A85FA /* BackbaseTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BackbaseTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FC31DEB23F31AFD009A85FA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FC31DEC23F31AFD009A85FA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -107,6 +115,7 @@
 				4FC31DF923F31B01009A85FA /* LaunchScreen.storyboard */,
 				4FC31DFC23F31B01009A85FA /* Info.plist */,
 				4FC31DFD23F31B01009A85FA /* main.m */,
+				4F93338B23F58879002AC559 /* cities.json */,
 			);
 			path = BackbaseTest;
 			sourceTree = "<group>";
@@ -143,6 +152,8 @@
 		4FC31E1423F31C0C009A85FA /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				4F93338D23F606DE002AC559 /* BTCityListManager.h */,
+				4F93338E23F606DE002AC559 /* BTCityListManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -150,6 +161,8 @@
 		4FC31E1523F31C21009A85FA /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				4F93339023F634CA002AC559 /* BTCityListFromFileService.h */,
+				4F93339123F634CA002AC559 /* BTCityListFromFileService.m */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -243,6 +256,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F93338C23F58879002AC559 /* cities.json in Resources */,
 				4FC31DFB23F31B01009A85FA /* LaunchScreen.storyboard in Resources */,
 				4FC31DF823F31B01009A85FA /* Assets.xcassets in Resources */,
 				4FC31DF623F31AFD009A85FA /* Main.storyboard in Resources */,
@@ -267,6 +281,8 @@
 				4FC31E1B23F31E30009A85FA /* BTCityModel.m in Sources */,
 				4FC31E1823F31CA5009A85FA /* BTCitiesListViewController.m in Sources */,
 				4FC31DFE23F31B01009A85FA /* main.m in Sources */,
+				4F93338F23F606DE002AC559 /* BTCityListManager.m in Sources */,
+				4F93339223F634CA002AC559 /* BTCityListFromFileService.m in Sources */,
 				4FC31E1E23F31ECE009A85FA /* BTCityCoordinatesDataModel.m in Sources */,
 				4FC31E2223F48B05009A85FA /* BTArraySearcher.m in Sources */,
 				4FC31DF023F31AFD009A85FA /* SceneDelegate.m in Sources */,
