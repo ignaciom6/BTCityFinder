@@ -10,8 +10,10 @@
 #import "BTArraySearcher.h"
 #import "BTCityListManager.h"
 #import "BTCityModel.h"
+#import "BTCitiesMapViewController.h"
 
 static NSString *const kCellIdentifier = @"cityCell";
+static NSString *const kListToMapSegueIdentifier = @"ListToMapSegue";
 
 @interface BTCitiesListViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
@@ -22,6 +24,7 @@ static NSString *const kCellIdentifier = @"cityCell";
 @property (assign, nonatomic) BOOL userStartedSearching;
 @property (strong, nonatomic) UIActivityIndicatorView *spinner;
 @property (strong, nonatomic) BTCityListManager *cityListManager;
+@property (strong, nonatomic) BTCityModel *city;
 
 @end
 
@@ -119,18 +122,28 @@ static NSString *const kCellIdentifier = @"cityCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
-    BTCityModel *city = [[BTCityModel alloc] init];
     
     if (self.userStartedSearching) {
-        city = [self.citySearchArray objectAtIndex:indexPath.row];
+        self.city = [self.citySearchArray objectAtIndex:indexPath.row];
     } else {
-        city = [self.citiesArray objectAtIndex:indexPath.row];
+        self.city = [self.citiesArray objectAtIndex:indexPath.row];
     }
-    cell.textLabel.text = city.composedName;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Latitude: %f, Longitude: %f", city.coordDataModel.latitude, city.coordDataModel.longitude];
+    cell.textLabel.text = self.city.composedName;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Latitude: %f, Longitude: %f", self.city.coordDataModel.latitude, self.city.coordDataModel.longitude];
 
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.userStartedSearching) {
+        self.city = [self.citySearchArray objectAtIndex:indexPath.row];
+    } else {
+        self.city = [self.citiesArray objectAtIndex:indexPath.row];
+    }
+    
+    [self performSegueWithIdentifier:kListToMapSegueIdentifier sender:self];
 }
 
 #pragma mark - UISearchBarDelegate
@@ -159,14 +172,18 @@ static NSString *const kCellIdentifier = @"cityCell";
     return [array sortedArrayUsingDescriptors:@[nameDescriptor]];
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqual:kListToMapSegueIdentifier])
+    {
+        BTCitiesMapViewController *mapVC = (BTCitiesMapViewController*)segue.destinationViewController;
+        [mapVC setCustomCity:self.city];
+        
+    }
 }
-*/
+
 
 @end

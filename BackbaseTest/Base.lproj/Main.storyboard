@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="K4r-LW-FG7">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5UK-L9-Ubi">
-                                <rect key="frame" x="0.0" y="100" width="414" height="776"/>
+                                <rect key="frame" x="0.0" y="144" width="414" height="732"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cityCell" textLabel="oeZ-A1-heY" detailTextLabel="gub-CW-GLO" style="IBUITableViewCellStyleSubtitle" id="WcL-Wz-4TZ">
@@ -47,7 +47,7 @@
                                 </prototypes>
                             </tableView>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="48l-5k-oeH">
-                                <rect key="frame" x="0.0" y="44" width="414" height="56"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
@@ -64,12 +64,62 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="5ai-nV-Wb0"/>
                     <connections>
                         <outlet property="searchBar" destination="48l-5k-oeH" id="5fS-ek-3Vk"/>
                         <outlet property="tableView" destination="5UK-L9-Ubi" id="zkm-SG-AJY"/>
+                        <segue destination="nbq-HW-RYj" kind="show" identifier="ListToMapSegue" id="B8z-6f-pA2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1047.8260869565217" y="117.85714285714285"/>
+        </scene>
+        <!--Cities Map View Controller-->
+        <scene sceneID="TkB-7D-Qfn">
+            <objects>
+                <viewController id="nbq-HW-RYj" customClass="BTCitiesMapViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ls5-oS-DcU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="fsU-9r-C67">
+                                <rect key="frame" x="0.0" y="88" width="414" height="788"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="fsU-9r-C67" firstAttribute="top" secondItem="CSx-iV-blp" secondAttribute="top" id="FRM-aK-YLd"/>
+                            <constraint firstItem="fsU-9r-C67" firstAttribute="leading" secondItem="CSx-iV-blp" secondAttribute="leading" id="Hvz-0g-kx2"/>
+                            <constraint firstAttribute="bottom" secondItem="fsU-9r-C67" secondAttribute="bottom" constant="20" symbolic="YES" id="Oue-X7-25B"/>
+                            <constraint firstItem="fsU-9r-C67" firstAttribute="trailing" secondItem="CSx-iV-blp" secondAttribute="trailing" id="lja-CF-FKg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="CSx-iV-blp"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="8vU-Ec-fPV"/>
+                    <connections>
+                        <outlet property="mainMap" destination="fsU-9r-C67" id="ZIq-XE-LhH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K70-rc-Yei" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1924.6376811594205" y="117.85714285714285"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="o03-eE-OLZ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="K4r-LW-FG7" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3hP-oH-Tz7">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="FdK-PY-K8p"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Al2-sw-2T1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="117.85714285714285"/>
         </scene>

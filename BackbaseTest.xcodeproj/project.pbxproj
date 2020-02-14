@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F29222B23F7424B00FD86FB /* BTCitiesMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F29222A23F7424B00FD86FB /* BTCitiesMapViewController.m */; };
 		4F93338C23F58879002AC559 /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F93338B23F58879002AC559 /* cities.json */; };
 		4F93338F23F606DE002AC559 /* BTCityListManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F93338E23F606DE002AC559 /* BTCityListManager.m */; };
 		4F93339223F634CA002AC559 /* BTCityListFromFileService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F93339123F634CA002AC559 /* BTCityListFromFileService.m */; };
+		4FBCD2CE23F7461C003B268D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FBCD2CD23F7461C003B268D /* MapKit.framework */; };
 		4FC31DED23F31AFD009A85FA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC31DEC23F31AFD009A85FA /* AppDelegate.m */; };
 		4FC31DF623F31AFD009A85FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FC31DF423F31AFD009A85FA /* Main.storyboard */; };
 		4FC31DF823F31B01009A85FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FC31DF723F31B01009A85FA /* Assets.xcassets */; };
@@ -33,11 +35,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F29222923F7424B00FD86FB /* BTCitiesMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTCitiesMapViewController.h; sourceTree = "<group>"; };
+		4F29222A23F7424B00FD86FB /* BTCitiesMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTCitiesMapViewController.m; sourceTree = "<group>"; };
 		4F93338B23F58879002AC559 /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
 		4F93338D23F606DE002AC559 /* BTCityListManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTCityListManager.h; sourceTree = "<group>"; };
 		4F93338E23F606DE002AC559 /* BTCityListManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTCityListManager.m; sourceTree = "<group>"; };
 		4F93339023F634CA002AC559 /* BTCityListFromFileService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTCityListFromFileService.h; sourceTree = "<group>"; };
 		4F93339123F634CA002AC559 /* BTCityListFromFileService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTCityListFromFileService.m; sourceTree = "<group>"; };
+		4FBCD2CD23F7461C003B268D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4FC31DE823F31AFD009A85FA /* BackbaseTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BackbaseTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FC31DEB23F31AFD009A85FA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FC31DEC23F31AFD009A85FA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -64,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FBCD2CE23F7461C003B268D /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,12 +83,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4FBCD2CC23F7461C003B268D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4FBCD2CD23F7461C003B268D /* MapKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4FC31DDF23F31AFD009A85FA = {
 			isa = PBXGroup;
 			children = (
 				4FC31DEA23F31AFD009A85FA /* BackbaseTest */,
 				4FC31E0623F31B01009A85FA /* BackbaseTestTests */,
 				4FC31DE923F31AFD009A85FA /* Products */,
+				4FBCD2CC23F7461C003B268D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -140,6 +155,8 @@
 			children = (
 				4FC31E1623F31CA5009A85FA /* BTCitiesListViewController.h */,
 				4FC31E1723F31CA5009A85FA /* BTCitiesListViewController.m */,
+				4F29222923F7424B00FD86FB /* BTCitiesMapViewController.h */,
+				4F29222A23F7424B00FD86FB /* BTCitiesMapViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -272,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F29222B23F7424B00FD86FB /* BTCitiesMapViewController.m in Sources */,
 				4FC31DED23F31AFD009A85FA /* AppDelegate.m in Sources */,
 				4FC31E1B23F31E30009A85FA /* BTCityModel.m in Sources */,
 				4FC31E1823F31CA5009A85FA /* BTCitiesListViewController.m in Sources */,
