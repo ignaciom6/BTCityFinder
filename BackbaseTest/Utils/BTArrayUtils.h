@@ -1,5 +1,5 @@
 //
-//  BTArraySearcher.h
+//  BTArrayUtils.h
 //  BackbaseTest
 //
 //  Created by Ignacio on 12/02/2020.
@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BTArraySearcher : NSObject
+@interface BTArrayUtils : NSObject
 
 + (NSMutableArray *)searchText:(NSString *)text inArray:(NSArray *)array;
++ (NSArray *)orderArrayAlphabetically:(NSArray *)array;
 
 @end

@@ -22,6 +22,7 @@
     [super viewDidLoad];
 
     self.mainMap.delegate = self;
+    self.title = self.city.composedName;
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -12,6 +12,7 @@
 		4F93338F23F606DE002AC559 /* BTCityListManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F93338E23F606DE002AC559 /* BTCityListManager.m */; };
 		4F93339223F634CA002AC559 /* BTCityListFromFileService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F93339123F634CA002AC559 /* BTCityListFromFileService.m */; };
 		4FBCD2CE23F7461C003B268D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FBCD2CD23F7461C003B268D /* MapKit.framework */; };
+		4FBCD2D023F82887003B268D /* BTCitiesListViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBCD2CF23F82887003B268D /* BTCitiesListViewControllerTests.m */; };
 		4FC31DED23F31AFD009A85FA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC31DEC23F31AFD009A85FA /* AppDelegate.m */; };
 		4FC31DF623F31AFD009A85FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FC31DF423F31AFD009A85FA /* Main.storyboard */; };
 		4FC31DF823F31B01009A85FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FC31DF723F31B01009A85FA /* Assets.xcassets */; };
@@ -21,7 +22,7 @@
 		4FC31E1823F31CA5009A85FA /* BTCitiesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC31E1723F31CA5009A85FA /* BTCitiesListViewController.m */; };
 		4FC31E1B23F31E30009A85FA /* BTCityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC31E1A23F31E30009A85FA /* BTCityModel.m */; };
 		4FC31E1E23F31ECE009A85FA /* BTCityCoordinatesDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC31E1D23F31ECE009A85FA /* BTCityCoordinatesDataModel.m */; };
-		4FC31E2223F48B05009A85FA /* BTArraySearcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC31E2123F48B05009A85FA /* BTArraySearcher.m */; };
+		4FC31E2223F48B05009A85FA /* BTArrayUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC31E2123F48B05009A85FA /* BTArrayUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		4F93339023F634CA002AC559 /* BTCityListFromFileService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTCityListFromFileService.h; sourceTree = "<group>"; };
 		4F93339123F634CA002AC559 /* BTCityListFromFileService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTCityListFromFileService.m; sourceTree = "<group>"; };
 		4FBCD2CD23F7461C003B268D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		4FBCD2CF23F82887003B268D /* BTCitiesListViewControllerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTCitiesListViewControllerTests.m; sourceTree = "<group>"; };
 		4FC31DE823F31AFD009A85FA /* BackbaseTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BackbaseTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FC31DEB23F31AFD009A85FA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FC31DEC23F31AFD009A85FA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -60,8 +62,8 @@
 		4FC31E1A23F31E30009A85FA /* BTCityModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTCityModel.m; sourceTree = "<group>"; };
 		4FC31E1C23F31ECE009A85FA /* BTCityCoordinatesDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTCityCoordinatesDataModel.h; sourceTree = "<group>"; };
 		4FC31E1D23F31ECE009A85FA /* BTCityCoordinatesDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTCityCoordinatesDataModel.m; sourceTree = "<group>"; };
-		4FC31E2023F48B05009A85FA /* BTArraySearcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTArraySearcher.h; sourceTree = "<group>"; };
-		4FC31E2123F48B05009A85FA /* BTArraySearcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTArraySearcher.m; sourceTree = "<group>"; };
+		4FC31E2023F48B05009A85FA /* BTArrayUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTArrayUtils.h; sourceTree = "<group>"; };
+		4FC31E2123F48B05009A85FA /* BTArrayUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTArrayUtils.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 			children = (
 				4FC31E0723F31B01009A85FA /* BackbaseTestTests.m */,
 				4FC31E0923F31B01009A85FA /* Info.plist */,
+				4FBCD2CF23F82887003B268D /* BTCitiesListViewControllerTests.m */,
 			);
 			path = BackbaseTestTests;
 			sourceTree = "<group>";
@@ -182,8 +185,8 @@
 		4FC31E1F23F48AB8009A85FA /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				4FC31E2023F48B05009A85FA /* BTArraySearcher.h */,
-				4FC31E2123F48B05009A85FA /* BTArraySearcher.m */,
+				4FC31E2023F48B05009A85FA /* BTArrayUtils.h */,
+				4FC31E2123F48B05009A85FA /* BTArrayUtils.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -297,7 +300,7 @@
 				4F93338F23F606DE002AC559 /* BTCityListManager.m in Sources */,
 				4F93339223F634CA002AC559 /* BTCityListFromFileService.m in Sources */,
 				4FC31E1E23F31ECE009A85FA /* BTCityCoordinatesDataModel.m in Sources */,
-				4FC31E2223F48B05009A85FA /* BTArraySearcher.m in Sources */,
+				4FC31E2223F48B05009A85FA /* BTArrayUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FC31E0823F31B01009A85FA /* BackbaseTestTests.m in Sources */,
+				4FBCD2D023F82887003B268D /* BTCitiesListViewControllerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

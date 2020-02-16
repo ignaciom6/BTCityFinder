@@ -1,15 +1,19 @@
 //
-//  BTArraySearcher.m
+//  BTArrayUtils.m
 //  BackbaseTest
 //
 //  Created by Ignacio on 12/02/2020.
 //  Copyright © 2020 Ignacio. All rights reserved.
 //
 
-#import "BTArraySearcher.h"
+#import "BTArrayUtils.h"
 #import "BTCityModel.h"
 
-@implementation BTArraySearcher
+@implementation BTArrayUtils
+
+/*
+ Method searchText:inArray: performs a binary search. This is achieved by using NSArray method indexOfObject:inSortedRange:options:usingComparator: that compares two objects. In this case, the objects compared are the prefix entered by the user and the city.composedName string. In the end, this method is not used and the reason is I couldn't find why it reverses the values in usingComparator. The first time it runs, BTCityModel *city returns a BTCityModel object, and id prefix returns a string, but the second time it's executed, these values are reversed. BTCityModel *city returns a string and id prefix is a BTCityModel object. What causes the app to crash with an "unrecognized selector sent to instance".
+ */
 
 + (NSMutableArray *)searchText:(NSString *)text inArray:(NSArray *)array
 {
@@ -25,27 +29,16 @@
                  options:NSBinarySearchingFirstEqual
          usingComparator:^(BTCityModel *city, id prefix)
     {
-        NSComparisonResult comparison = [city.name compare:prefix];
-        NSComparisonResult result;
         characterFound = NO;
         
-        NSRange nameRange = [city.name rangeOfString:text options:NSCaseInsensitiveSearch];
+        NSRange nameRange = [city.composedName rangeOfString:text options:NSCaseInsensitiveSearch];
         if(nameRange.length != 0 && nameRange.location == 0)
         {
             binarySearchFirstIndex = [array indexOfObject:city];
             characterFound = YES;
         }
         
-        if (comparison == NSOrderedAscending) { //city < prefix
-            result = NSOrderedAscending;
-        } else if (comparison == NSOrderedDescending) { //city > prefix
-            result = NSOrderedDescending;
-        } else {
-            result = NSOrderedSame;
-        }
-        
-        
-        return result;
+        return [city.composedName compare:prefix];
         
     }];
     
@@ -54,27 +47,18 @@
                  options:NSBinarySearchingLastEqual
          usingComparator:^(BTCityModel *city, id prefix)
     {
-        NSComparisonResult comparison = [city.name compare:prefix];
-        NSComparisonResult result;
+        NSComparisonResult comparison = [city.composedName compare:prefix];
         characterFound = NO;
 
-        NSRange nameRange = [city.name rangeOfString:text options:NSCaseInsensitiveSearch];
+        NSRange nameRange = [city.composedName rangeOfString:text options:NSCaseInsensitiveSearch];
         if(nameRange.length != 0 && nameRange.location == 0)
         {
             binarySearchLastIndex = [array indexOfObject:city];
             comparison = NSOrderedAscending; //I want to know if there is another match to the right
             characterFound = YES;
         }
-
-        if (comparison == NSOrderedAscending) {
-            result =  NSOrderedAscending;
-        } else if (comparison == NSOrderedDescending) {
-            result =  NSOrderedDescending;
-        } else {
-            result =  NSOrderedSame;
-        }
         
-        return result;
+        return comparison;
     }];
     
     NSMutableArray *searchArray = [[NSMutableArray alloc] init];
@@ -86,6 +70,17 @@
     }
     
     return searchArray;
+}
+
++ (NSArray *)orderArrayAlphabetically:(NSArray *)array
+{
+    NSArray *sortedCitiesArray;
+    sortedCitiesArray = [array sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+        NSString *aComposedName = [(BTCityModel*)a composedName];
+        NSString *bComposedName = [(BTCityModel*)b composedName];
+        return [aComposedName compare:bComposedName];
+    }];
+    return sortedCitiesArray;
 }
 
 

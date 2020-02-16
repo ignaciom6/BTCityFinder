@@ -7,7 +7,7 @@
 //
 
 #import "BTCitiesListViewController.h"
-#import "BTArraySearcher.h"
+#import "BTArrayUtils.h"
 #import "BTCityListManager.h"
 #import "BTCityModel.h"
 #import "BTCitiesMapViewController.h"
@@ -39,31 +39,6 @@ static NSString *const kListToMapSegueIdentifier = @"ListToMapSegue";
     
     self.citySearchArray = [[NSMutableArray alloc] init];
     self.cityListManager = [[BTCityListManager alloc] init];
-
-//    self.citiesArray = [[NSArray alloc] initWithObjects:@"Paris",
-//                        @"Stockholm",
-//                        @"Amsterdam",
-//                        @"Munich",
-//                        @"Madrid",
-//                        @"Oslo",
-//                        @"Moscow",
-//                        @"Oklahoma",
-//                        @"Porto",
-//                        @"Roma",
-//                        @"Rome",
-//                        @"Bangkok",
-//                        @"Ontario",
-//                        @"Orlando",
-//                        @"Ankara",
-//                        @"Alabama",
-//                        @"Ohio",
-//                        @"Omaha",
-//                        @"Munster",
-//                        @"Rotterdam",
-//                        @"Salzburg",
-//                        @"Oncativo",nil];
-    
-//    self.citiesArray = [self orderArrayAlphabetically:self.citiesArray];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -75,19 +50,26 @@ static NSString *const kListToMapSegueIdentifier = @"ListToMapSegue";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-        
-    __weak typeof(self) weakSelf = self;
     
-    [self.cityListManager getCitiesArrayWithCompletion:^(NSArray * _Nonnull value, NSError * _Nonnull error) {
-        if (value) {
-            weakSelf.citiesArray = value;
-            weakSelf.citiesArray = [weakSelf orderArrayAlphabetically:weakSelf.citiesArray];
-            [weakSelf.tableView reloadData];
-            [weakSelf hideLoading];
-        } else {
-            //Report failure
-        }
-    }];
+    if ([self.citySearchArray count] > 0 || [self.citiesArray count] > 0) {
+        [self hideLoading];
+    } else {
+        __weak typeof(self) weakSelf = self;
+        
+        [self.cityListManager getCitiesArrayWithCompletion:^(NSArray * _Nonnull value, NSError * _Nonnull error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (value) {
+                    weakSelf.citiesArray = value;
+                    weakSelf.citiesArray = [BTArrayUtils orderArrayAlphabetically:weakSelf.citiesArray];
+                    [weakSelf.tableView reloadData];
+                    [weakSelf hideLoading];
+                } else {
+                    //Report failure
+                }
+            });
+        }];
+    }
+    
 }
 
 -(void)showLoading
@@ -152,26 +134,18 @@ static NSString *const kListToMapSegueIdentifier = @"ListToMapSegue";
 {
     if (searchText.length != 0) {
         self.userStartedSearching = YES;
-//        self.citySearchArray = [BTArraySearcher searchText:searchText inArray:self.citiesArray];
+        /*
+         Details on why next line is commented, could be found in class BTArrayUtils.m, line 14. Also in README file
+         */
+//        self.citySearchArray = [BTArrayUtils searchText:searchText inArray:self.citiesArray];
         
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"composedName beginswith[c] %@", searchText];
         self.citySearchArray = [[self.citiesArray filteredArrayUsingPredicate:predicate] mutableCopy];
-        
     } else {
         self.userStartedSearching = NO;
     }
-    
     [self.tableView reloadData];
-
 }
-
-- (NSArray *)orderArrayAlphabetically:(NSArray *)array
-{
-    NSSortDescriptor * nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"composedName" ascending:YES selector:@selector(caseInsensitiveCompare:)];
-    
-    return [array sortedArrayUsingDescriptors:@[nameDescriptor]];
-}
-
 
 #pragma mark - Navigation
 
