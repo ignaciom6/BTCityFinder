@@ -18,7 +18,6 @@
     BTCityListFromFileService *cityListService = [[BTCityListFromFileService alloc] init];
     [cityListService getCitiesFromFileWithCompletion:^(NSArray * _Nonnull value, NSError * _Nonnull error) {
         if (value) {
-            
             NSMutableArray *citiesResultArray = [[NSMutableArray alloc] init];
             
             for (NSDictionary *cityDict in value)
@@ -26,12 +25,9 @@
                 BTCityModel *city = [[BTCityModel alloc] initWithDictionary:cityDict];
                 [citiesResultArray addObject:city];
             }
-            
-            NSError *err = nil;
-            completion(citiesResultArray, err);
-            
+            completion(citiesResultArray, nil);
         } else {
-            //Report failure.
+            completion(nil, error);
         }
     }];
 }

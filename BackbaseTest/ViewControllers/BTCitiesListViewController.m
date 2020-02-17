@@ -14,6 +14,8 @@
 
 static NSString *const kCellIdentifier = @"cityCell";
 static NSString *const kListToMapSegueIdentifier = @"ListToMapSegue";
+static NSString *const kErrorTitle = @"Error";
+static NSString *const kErrorKey = @"error";
 
 @interface BTCitiesListViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
@@ -25,6 +27,7 @@ static NSString *const kListToMapSegueIdentifier = @"ListToMapSegue";
 @property (strong, nonatomic) UIActivityIndicatorView *spinner;
 @property (strong, nonatomic) BTCityListManager *cityListManager;
 @property (strong, nonatomic) BTCityModel *city;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end
 
@@ -39,6 +42,15 @@ static NSString *const kListToMapSegueIdentifier = @"ListToMapSegue";
     
     self.citySearchArray = [[NSMutableArray alloc] init];
     self.cityListManager = [[BTCityListManager alloc] init];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor lightGrayColor];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self
+                       action:@selector(updateList)
+             forControlEvents:UIControlEventValueChanged];
+    
+    self.tableView.refreshControl = self.refreshControl;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -54,39 +66,55 @@ static NSString *const kListToMapSegueIdentifier = @"ListToMapSegue";
     if ([self.citySearchArray count] > 0 || [self.citiesArray count] > 0) {
         [self hideLoading];
     } else {
-        __weak typeof(self) weakSelf = self;
-        
-        [self.cityListManager getCitiesArrayWithCompletion:^(NSArray * _Nonnull value, NSError * _Nonnull error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (value) {
-                    weakSelf.citiesArray = value;
-                    weakSelf.citiesArray = [BTArrayUtils orderArrayAlphabetically:weakSelf.citiesArray];
-                    [weakSelf.tableView reloadData];
-                    [weakSelf hideLoading];
-                } else {
-                    //Report failure
-                }
-            });
-        }];
+        [self updateList];
     }
-    
 }
 
--(void)showLoading
+- (void)updateList
+{
+    __weak typeof(self) weakSelf = self;
+    
+    [self.cityListManager getCitiesArrayWithCompletion:^(NSArray * _Nonnull value, NSError * _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (value) {
+                weakSelf.citiesArray = value;
+                weakSelf.citiesArray = [BTArrayUtils orderArrayAlphabetically:weakSelf.citiesArray];
+                [weakSelf.tableView reloadData];
+                [weakSelf hideLoading];
+                [weakSelf.refreshControl endRefreshing];
+            } else {
+                [weakSelf hideLoading];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:kErrorTitle message:[error.userInfo objectForKey:kErrorKey] preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [weakSelf.refreshControl endRefreshing];
+                }];
+                
+                [alert addAction:okButton];
+                [weakSelf presentViewController:alert animated:YES completion:nil];
+            }
+        });
+    }];
+}
+
+- (void)showLoading
 {
     self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     self.spinner.center = self.view.center;
     [self.view addSubview:self.spinner];
+    
+    __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^(void) {
-        [self.spinner startAnimating];
+        [weakSelf.spinner startAnimating];
     });
     
 }
 
--(void)hideLoading
+- (void)hideLoading
 {
+    __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^(void) {
-        [self.spinner stopAnimating];
+        [weakSelf.spinner stopAnimating];
     });
 }
 
@@ -125,6 +153,7 @@ static NSString *const kListToMapSegueIdentifier = @"ListToMapSegue";
         self.city = [self.citiesArray objectAtIndex:indexPath.row];
     }
     
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self performSegueWithIdentifier:kListToMapSegueIdentifier sender:self];
 }
 
