@@ -186,6 +186,7 @@ static NSString *const kErrorKey = @"error";
 {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)configureSearchBar
