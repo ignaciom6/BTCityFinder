@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5UK-L9-Ubi">
-                                <rect key="frame" x="0.0" y="144" width="414" height="732"/>
+                                <rect key="frame" x="0.0" y="144" width="414" height="752"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cityCell" textLabel="oeZ-A1-heY" detailTextLabel="gub-CW-GLO" style="IBUITableViewCellStyleSubtitle" id="WcL-Wz-4TZ">
@@ -56,7 +56,7 @@
                             <constraint firstItem="5UK-L9-Ubi" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Can-fb-3mX"/>
                             <constraint firstItem="48l-5k-oeH" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="OHm-om-K1a"/>
                             <constraint firstItem="48l-5k-oeH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="PWu-9h-Mb3"/>
-                            <constraint firstAttribute="bottom" secondItem="5UK-L9-Ubi" secondAttribute="bottom" constant="20" symbolic="YES" id="RvU-Qe-Lvc"/>
+                            <constraint firstAttribute="bottom" secondItem="5UK-L9-Ubi" secondAttribute="bottom" id="RvU-Qe-Lvc"/>
                             <constraint firstItem="48l-5k-oeH" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="a7A-j0-ZRS"/>
                             <constraint firstItem="5UK-L9-Ubi" firstAttribute="top" secondItem="48l-5k-oeH" secondAttribute="bottom" symbolic="YES" id="aPD-Mp-L8b"/>
                             <constraint firstItem="5UK-L9-Ubi" firstAttribute="top" secondItem="48l-5k-oeH" secondAttribute="bottom" id="vpY-m7-P6U"/>
