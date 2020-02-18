@@ -36,21 +36,13 @@ static NSString *const kErrorKey = @"error";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.searchBar.delegate = self;
+    [self configureTableView];
+    [self configureSearchBar];
     
     self.citySearchArray = [[NSMutableArray alloc] init];
     self.cityListManager = [[BTCityListManager alloc] init];
     
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    self.refreshControl.backgroundColor = [UIColor lightGrayColor];
-    self.refreshControl.tintColor = [UIColor whiteColor];
-    [self.refreshControl addTarget:self
-                       action:@selector(updateList)
-             forControlEvents:UIControlEventValueChanged];
-    
-    self.tableView.refreshControl = self.refreshControl;
+    [self configureRefreshControl];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -186,6 +178,31 @@ static NSString *const kErrorKey = @"error";
         [mapVC setCustomCity:self.city];
         
     }
+}
+
+#pragma mark - View SetUp
+
+- (void)configureTableView
+{
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+}
+
+- (void)configureSearchBar
+{
+    self.searchBar.delegate = self;
+}
+
+- (void)configureRefreshControl
+{
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor lightGrayColor];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self
+                       action:@selector(updateList)
+             forControlEvents:UIControlEventValueChanged];
+    
+    self.tableView.refreshControl = self.refreshControl;
 }
 
 
