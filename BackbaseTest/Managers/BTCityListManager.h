@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BTCityListManager : NSObject
 
-- (void)getCitiesArrayWithCompletion:(void (^)(NSArray *value, NSError *error))completion;
+- (void)getCitiesArrayForFile:(NSString *)file type:(NSString *)type withCompletion:(void (^)(NSArray *value, NSError *error))completion;
 
 @end
 

@@ -8,14 +8,11 @@
 
 #import "BTCityListFromFileService.h"
 
-static NSString *const kFileName = @"cities";
-static NSString *const kFileType = @"json";
-
 @implementation BTCityListFromFileService
 
-- (void)getCitiesFromFileWithCompletion:(void (^)(NSArray *value, NSError *error))completion
+- (void)getCitiesFromFile:(NSString *)file type:(NSString *)format withCompletion:(void (^)(NSArray *value, NSError *error))completion
 {
-    NSString *path = [[NSBundle mainBundle] pathForResource:kFileName ofType:kFileType];
+    NSString *path = [[NSBundle mainBundle] pathForResource:file ofType:format];
     NSData *data = [NSData dataWithContentsOfFile:path];
     
     if (data) {

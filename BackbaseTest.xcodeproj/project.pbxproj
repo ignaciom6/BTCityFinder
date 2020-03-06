@@ -18,7 +18,6 @@
 		4FC31DF823F31B01009A85FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FC31DF723F31B01009A85FA /* Assets.xcassets */; };
 		4FC31DFB23F31B01009A85FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FC31DF923F31B01009A85FA /* LaunchScreen.storyboard */; };
 		4FC31DFE23F31B01009A85FA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC31DFD23F31B01009A85FA /* main.m */; };
-		4FC31E0823F31B01009A85FA /* BackbaseTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC31E0723F31B01009A85FA /* BackbaseTestTests.m */; };
 		4FC31E1823F31CA5009A85FA /* BTCitiesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC31E1723F31CA5009A85FA /* BTCitiesListViewController.m */; };
 		4FC31E1B23F31E30009A85FA /* BTCityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC31E1A23F31E30009A85FA /* BTCityModel.m */; };
 		4FC31E1E23F31ECE009A85FA /* BTCityCoordinatesDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC31E1D23F31ECE009A85FA /* BTCityCoordinatesDataModel.m */; };
@@ -54,7 +53,6 @@
 		4FC31DFC23F31B01009A85FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FC31DFD23F31B01009A85FA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4FC31E0323F31B01009A85FA /* BackbaseTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BackbaseTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4FC31E0723F31B01009A85FA /* BackbaseTestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BackbaseTestTests.m; sourceTree = "<group>"; };
 		4FC31E0923F31B01009A85FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FC31E1623F31CA5009A85FA /* BTCitiesListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BTCitiesListViewController.h; sourceTree = "<group>"; };
 		4FC31E1723F31CA5009A85FA /* BTCitiesListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BTCitiesListViewController.m; sourceTree = "<group>"; };
@@ -135,7 +133,6 @@
 		4FC31E0623F31B01009A85FA /* BackbaseTestTests */ = {
 			isa = PBXGroup;
 			children = (
-				4FC31E0723F31B01009A85FA /* BackbaseTestTests.m */,
 				4FC31E0923F31B01009A85FA /* Info.plist */,
 				4FBCD2CF23F82887003B268D /* BTCitiesListViewControllerTests.m */,
 			);
@@ -308,7 +305,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FC31E0823F31B01009A85FA /* BackbaseTestTests.m in Sources */,
 				4FBCD2D023F82887003B268D /* BTCitiesListViewControllerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

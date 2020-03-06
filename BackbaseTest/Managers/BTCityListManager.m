@@ -13,10 +13,10 @@
 @implementation BTCityListManager
 
 
-- (void)getCitiesArrayWithCompletion:(void (^)(NSArray *value, NSError *error))completion
+- (void)getCitiesArrayForFile:(NSString *)file type:(NSString *)type withCompletion:(void (^)(NSArray *value, NSError *error))completion
 {
     BTCityListFromFileService *cityListService = [[BTCityListFromFileService alloc] init];
-    [cityListService getCitiesFromFileWithCompletion:^(NSArray * _Nonnull value, NSError * _Nonnull error) {
+    [cityListService getCitiesFromFile:file type:type withCompletion:^(NSArray *value, NSError *error) {
         if (value) {
             NSMutableArray *citiesResultArray = [[NSMutableArray alloc] init];
             

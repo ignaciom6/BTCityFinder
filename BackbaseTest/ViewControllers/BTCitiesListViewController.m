@@ -17,6 +17,9 @@ static NSString *const kListToMapSegueIdentifier = @"ListToMapSegue";
 static NSString *const kErrorTitle = @"Error";
 static NSString *const kErrorKey = @"error";
 
+static NSString *const kFileName = @"cities";
+static NSString *const kFileType = @"json";
+
 @interface BTCitiesListViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
@@ -66,7 +69,7 @@ static NSString *const kErrorKey = @"error";
 {
     __weak typeof(self) weakSelf = self;
     
-    [self.cityListManager getCitiesArrayWithCompletion:^(NSArray * _Nonnull value, NSError * _Nonnull error) {
+    [self.cityListManager getCitiesArrayForFile:kFileName type:kFileType withCompletion:^(NSArray *value, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (value) {
                 weakSelf.citiesArray = value;
