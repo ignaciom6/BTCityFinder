@@ -1,4 +1,4 @@
-# Backbase Test
+# BTCityFinder App
 
 This app takes a list of cities from a json file included in the project and shows it in an alphabetically ordered tableView. You can filter this list by typing on the search bar at the top of the main view. You can also select a city of this list and it will show its position on a map.
 
